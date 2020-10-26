@@ -34,7 +34,26 @@ bot.hear('hello', (payload, chat) => {
     chat.say(`Chào, ${user.first_name}!`);
   });
 });
-
+bot.hear('Bắt Đầu', (payload, chat) => {
+  chat.getUserProfile().then((user) => {
+    chat.say(`Chào, ${user.first_name}!`);
+  });
+});
+bot.hear(['help'], (payload, chat) => {
+	// Send a text message with buttons
+	chat.say({
+		text: 'What do you need help with?',
+		buttons: [
+			{ type: 'postback', title: 'Settings', payload: 'HELP_SETTINGS' },
+			{ type: 'postback', title: 'FAQ', payload: 'HELP_FAQ' },
+			{ type: 'postback', title: 'Talk to a human', payload: 'HELP_HUMAN' }
+		]
+	});
+});
+bot.on('postback:HELP_HUMAN', (payload, chat) => {
+  chat.say(`admin se som tra loi ban`);  
+	console.log('The Help Me button was clicked!');
+});
 bot.on('message', (payload, chat) => {
   const text = payload.message.text;
   chat.getUserProfile().then((user) => {
