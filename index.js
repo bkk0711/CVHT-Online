@@ -8,6 +8,12 @@ var conn = mysql.createConnection({
   password: 'mysql',
   database: 'cvht'
 });
+const {Wit, log} = require('node-wit');
+
+const client = new Wit({
+  accessToken: '47NT7G3HFCU7DNVPAT7WZAGXPKGMUYNY',
+  logger: new log.Logger(log.DEBUG) // optional
+});
 
 conn.connect(function(err) {
   if (err) throw err;
@@ -58,6 +64,7 @@ bot.on('message', (payload, chat) => {
   const text = payload.message.text;
   chat.getUserProfile().then((user) => {
   chat.say(`Bạn nhắn: ${text}`);  
+  console.log(client.message(text));
   console.log(`Người Gửi : ${user.first_name}`);
   console.log(`Nội dung : ${text}`);
   }); 
