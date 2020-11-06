@@ -1,0 +1,99 @@
+--
+-- Cấu trúc bảng cho bảng `tbl_chude`
+--
+
+CREATE TABLE `tbl_chude` (
+  `IDChuDe` int(10) UNSIGNED NOT NULL,
+  `TenChuDe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_phanhoi`
+--
+
+CREATE TABLE `tbl_phanhoi` (
+  `IDPhanHoi` int(10) UNSIGNED NOT NULL,
+  `IDChuDe` int(10) UNSIGNED NOT NULL,
+  `IDTuKhoa` int(10) UNSIGNED NOT NULL,
+  `PhanHoi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_tukhoa`
+--
+
+CREATE TABLE `tbl_tukhoa` (
+  `IDTuKhoa` int(10) UNSIGNED NOT NULL,
+  `TuKhoa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_tukhoa`
+--
+
+INSERT INTO `tbl_tukhoa` (`IDTuKhoa`, `TuKhoa`) VALUES
+(1, 'Biểu Mẫu'),
+(2, 'Quy Trình'),
+(3, 'Hướng Dẫn');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `tbl_chude`
+--
+ALTER TABLE `tbl_chude`
+  ADD PRIMARY KEY (`IDChuDe`);
+
+--
+-- Chỉ mục cho bảng `tbl_phanhoi`
+--
+ALTER TABLE `tbl_phanhoi`
+  ADD PRIMARY KEY (`IDPhanHoi`),
+  ADD KEY `IDChuDe` (`IDChuDe`),
+  ADD KEY `IDTuKhoa` (`IDTuKhoa`);
+
+--
+-- Chỉ mục cho bảng `tbl_tukhoa`
+--
+ALTER TABLE `tbl_tukhoa`
+  ADD PRIMARY KEY (`IDTuKhoa`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_chude`
+--
+ALTER TABLE `tbl_chude`
+  MODIFY `IDChuDe` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_phanhoi`
+--
+ALTER TABLE `tbl_phanhoi`
+  MODIFY `IDPhanHoi` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_tukhoa`
+--
+ALTER TABLE `tbl_tukhoa`
+  MODIFY `IDTuKhoa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `tbl_phanhoi`
+--
+ALTER TABLE `tbl_phanhoi`
+  ADD CONSTRAINT `tbl_phanhoi_ibfk_1` FOREIGN KEY (`IDChuDe`) REFERENCES `tbl_chude` (`IDChuDe`),
+  ADD CONSTRAINT `tbl_phanhoi_ibfk_2` FOREIGN KEY (`IDTuKhoa`) REFERENCES `tbl_tukhoa` (`IDTuKhoa`);
+COMMIT;
