@@ -55,6 +55,34 @@ class AdminController extends Controller
         $traloi = DB::table('tbl_phanhoi')->get();
         return view('admin.them_tra_loi')->with('traloi', $traloi)->with('chude', $chude)->with('tukhoa', $tukhoa);
     }
+    public function sua_tra_loi($id){
+        $chude = DB::table('tbl_chude')->get();
+        $tukhoa = DB::table('tbl_tukhoa')->get();
+        $traloi = DB::table('tbl_phanhoi')->where('IDPhanHoi', $id)->first();
+
+        return view('admin.sua_tra_loi')->with('traloi', $traloi)->with('chude', $chude)->with('tukhoa', $tukhoa);
+    }
+    public function sua_tra_loi_post(Request $request){
+        $idtraloi = $request->idtraloi;
+        $chude = $request->chude;
+        $tukhoa = $request->tukhoa;
+        $noidung = $request->noidung;
+
+        $data = array();
+        $data['IDChuDe'] = $chude;
+        $data['IDTuKhoa'] = $tukhoa;
+        $data['PhanHoi'] = $noidung;
+
+            DB::table('tbl_phanhoi')->where('IDPhanHoi', $idtraloi)->update($data);
+            Session::put('message', 'Cập Nhật Câu Trả Lời Thành Công');
+        return redirect('/them_tra_loi');
+    }
+    public function xoa_tra_loi($id){
+        DB::table('tbl_phanhoi')->where('IDPhanHoi', $id)->delete();
+        Session::put('message', 'Xóa từ khóa thành công');
+        return redirect('/them_tra_loi');
+    }
+
     public function them_tra_loi_post(Request $request){
         $chude = $request->chude;
         $tukhoa = $request->tukhoa;
@@ -75,10 +103,23 @@ class AdminController extends Controller
         $tukhoa = DB::table('tbl_tukhoa')->get();
         return view('admin.them_tu_khoa')->with('tukhoa', $tukhoa);
     }
+    public function sua_tu_khoa($id){
+        $tukhoa = DB::table('tbl_tukhoa')->where('IDTuKhoa', $id)->first();
+        return view('admin.sua_tu_khoa')->with('id', $id)->with('tukhoa', $tukhoa);
+    }
+    public function sua_tu_khoa_post(Request $request){
+        $idtukhoa = $request->idtukhoa;
+        $tukhoa = $request->tukhoa;
+        $data = array();
+        $data['TuKhoa'] = $tukhoa;
+            DB::table('tbl_tukhoa')->where('IDTuKhoa', $idtukhoa)->update($data);
+            Session::put('message', 'Cập Nhật Từ Khóa Thành Công');
+        return redirect('/them_tu_khoa');
+    }
     public function xoa_tu_khoa($tukhoa){
         DB::table('tbl_phanhoi')->where('IDTuKhoa', $tukhoa)->delete();
         DB::table('tbl_tukhoa')->where('IDTuKhoa', $tukhoa)->delete();
-        
+        Session::put('message', 'Xóa từ khóa thành công');
         return redirect('/them_tu_khoa');
     }
 

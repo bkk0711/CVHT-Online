@@ -62,6 +62,7 @@
               <th scope="col">Chủ đề</th>
               <th scope="col">Từ Khóa</th>
               <th scope="col">Nội dung</th>
+              <th scope="col">Hành Động</th>
              
               
             </tr>
@@ -73,6 +74,10 @@
                   <td>{{ ($chude->where('IDChuDe',$tl->IDChuDe))->first()->TenChuDe}}</td>
                   <td>{{ ($tukhoa->where('IDTuKhoa',$tl->IDTuKhoa))->first()->TuKhoa}}</td>
                   <td>{{ $tl->PhanHoi }}</td>
+
+                  <td><a href="{{ URL::to('sua_tra_loi/'.$tl->IDPhanHoi) }}" class="label label-warning">Sửa</a>   
+                      <a class="label label-danger" href="{{ URL::to('xoa_tra_loi/'.$tl->IDPhanHoi) }}">Xóa</a>
+                    </td>
                  
                 </tr>
               @endforeach
