@@ -1,9 +1,9 @@
 @extends('admin_layout')
 @section('title', 'Quản lý câu trả lời')
 @section('admin_content')
-   
-   
-<div class="col-md-9">
+
+
+<div class="col-md-12">
     <?php
     $message =  Session::get('message');
     if(isset($message)){
@@ -14,11 +14,13 @@
 
     }
     ?>
-    <div class="panel panel-primary">
+    <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Thêm Câu Trả Lời</h3>
+        </div>
+        <div class="card-body">
 
-        <div class="panel-heading">Thêm Câu Trả Lời </div>
-        <div class="panel-body">
-      
+
             <form action="{{ URL::to('them_tra_loi')}}" method="post">
                 {{ csrf_field() }}
 
@@ -42,19 +44,21 @@
              <div class="form-group">
                 <label for=""> Nội dung trả lời : </label>
                 <textarea id="noidung" name="noidung" rows="5" class="form-control"></textarea>
-                
+
              </div>
              <input type="submit" value="Thêm " class="btn btn-primary">
             </form>
-      
+
         </div>
-      
+
       </div>
       <hr/>
-      <div class="panel panel-primary">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Danh sách câu trả lời</h3>
+        </div>
+        <div class="card-body">
 
-        <div class="panel-heading">Danh sách câu trả lời </div>
-        <div class="panel-body">
         <table class="table" id="table">
           <thead>
             <tr>
@@ -63,8 +67,8 @@
               <th scope="col">Từ Khóa</th>
               <th scope="col">Nội dung</th>
               <th scope="col">Hành Động</th>
-             
-              
+
+
             </tr>
           </thead>
           <tbody>
@@ -75,14 +79,14 @@
                   <td>{{ ($tukhoa->where('IDTuKhoa',$tl->IDTuKhoa))->first()->TuKhoa}}</td>
                   <td>{{ $tl->PhanHoi }}</td>
 
-                  <td><a href="{{ URL::to('sua_tra_loi/'.$tl->IDPhanHoi) }}" class="label label-warning">Sửa</a>   
+                  <td><a href="{{ URL::to('sua_tra_loi/'.$tl->IDPhanHoi) }}" class="label label-warning">Sửa</a>
                       <a class="label label-danger" href="{{ URL::to('xoa_tra_loi/'.$tl->IDPhanHoi) }}">Xóa</a>
                     </td>
-                 
+
                 </tr>
               @endforeach
-            
-            
+
+
           </tbody>
         </table>
     </div>

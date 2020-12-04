@@ -1,8 +1,8 @@
 @extends('admin_layout')
 @section('title', 'Sửa từ khóa')
 @section('admin_content')
-   
-       <div class="col-md-9">
+
+       <div class="col-md-12">
         <?php
         $message =  Session::get('message');
         if(isset($message)){
@@ -10,14 +10,16 @@
          '.$message.'
         </div>';
         Session::put('message', null);
-    
+
         }
         ?>
-        <div class="panel panel-primary">
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Sửa Từ Khóa</h3>
+    </div>
 
-            <div class="panel-heading">Sửa Từ Khóa </div>
-            <div class="panel-body">
-          
+    <div class="card-body">
+
                 <form action="{{ URL::to('sua_tu_khoa')}}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -27,14 +29,14 @@
                  </div>
                  <input type="submit" value="Sửa " class="btn btn-primary">
                 </form>
-          
+
             </div>
-          
+
           </div>
-          
-          
-          
-           
-   
+
+
+
+
+
 
 @endsection

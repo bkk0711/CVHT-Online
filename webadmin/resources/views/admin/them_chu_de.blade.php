@@ -1,8 +1,8 @@
 @extends('admin_layout')
 @section('title', 'Quản lý chủ đề')
 @section('admin_content')
-   
-<div class="col-md-9">
+
+<div class="col-md-12">
     <?php
     $message =  Session::get('message');
     if(isset($message)){
@@ -13,11 +13,12 @@
 
     }
     ?>
-    <div class="panel panel-primary">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Thêm chủ đề</h3>
+        </div>
+        <div class="card-body">
 
-        <div class="panel-heading">Thêm chủ đề </div>
-        <div class="panel-body">
-      
             <form action="{{ URL::to('them_chu_de')}}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -30,22 +31,24 @@
              </div>
              <input type="submit" value="Thêm " class="btn btn-primary">
             </form>
-      
+
         </div>
-      
+
       </div>
       <hr/>
-      <div class="panel panel-primary">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Danh sách chủ đề</h3>
+        </div>
 
-        <div class="panel-heading">Danh sách chủ đề </div>
-        <div class="panel-body">
+        <div class="card-body">
         <table class="table" id="table">
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Mã Chủ Đề</th>
               <th scope="col">Tên Chủ Đề</th>
-              
+
             </tr>
           </thead>
           <tbody>
@@ -56,8 +59,8 @@
                   <td>{{ $cd->TenChuDe }}</td>
                 </tr>
               @endforeach
-            
-            
+
+
           </tbody>
         </table>
     </div>

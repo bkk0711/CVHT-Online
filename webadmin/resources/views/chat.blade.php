@@ -24,12 +24,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-   
+
     <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <style>
-  
+
   	body {
   	padding-top: 20px;
 		}
@@ -40,17 +40,17 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 /*Hidden class for adding and removing*/
 
@@ -106,7 +106,7 @@
 	-webkit-animation:3s infinite linear;
 	-moz-animation:3s infinite linear;
 	-o-animation:3s infinite linear;
-	
+
 }
 
 
@@ -115,7 +115,7 @@
 	-webkit-animation:kiri 1.2s infinite linear;
 	-moz-animation:kiri 1.2s infinite linear;
 	-o-animation:kiri 1.2s infinite linear;
-	
+
 }
 .loader span:nth-child(3){
 	background:#F1C40F;
@@ -132,10 +132,10 @@
 @-webkit-keyframes kanan {
     0% {-webkit-transform:translateX(20px);
     }
-   
+
 	50%{-webkit-transform:translateX(-20px);
 	}
-	
+
 	100%{-webkit-transform:translateX(20px);
 	z-index:200;
 	}
@@ -143,10 +143,10 @@
 @-moz-keyframes kanan {
     0% {-moz-transform:translateX(20px);
     }
-   
+
 	50%{-moz-transform:translateX(-20px);
 	}
-	
+
 	100%{-moz-transform:translateX(20px);
 	z-index:200;
 	}
@@ -154,10 +154,10 @@
 @-o-keyframes kanan {
     0% {-o-transform:translateX(20px);
     }
-   
+
 	50%{-o-transform:translateX(-20px);
 	}
-	
+
 	100%{-o-transform:translateX(20px);
 	z-index:200;
 	}
@@ -194,6 +194,14 @@
 	100%{-o-transform:translateX(-20px);
 	}
 }
+#result {
+    max-height: 400px;
+     margin-bottom: 10px;
+     overflow:scroll;
+     overflow-x: auto;
+     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
   </style>
 <body>
 <!-- Html -->
@@ -207,8 +215,8 @@
 
                     <div style=" max-height: 480px;height:480px">
                         <div id="result-msg"></div>
-                        
-<div style=" max-height: 400px; margin-bottom: 10px; overflow:scroll; overflow-x: auto;overflow-y: auto; -webkit-overflow-scrolling: touch; " id="result">
+
+<div style="  " id="result">
     <div class="list-group-item"><b style="color:red">Cố Vấn Học Tập </b> : Chào bạn ! Tôi là cố vấn học tập online . </div>
     <div class="list-group-item"><b style="color:red">Cố Vấn Học Tập </b> : Tôi có thể hổ trợ cho bạn các vấn đề mà bạn cần. </div>
     <div class="list-group-item"><b style="color:red">Cố Vấn Học Tập </b> : Bạn đang cần gì ? </div>
@@ -228,40 +236,40 @@
     <div class="input-group">
 
         <input type="text" name="noidung" id="noidung" class="form-control" placeholder="Nhập nôi dung..."/>
-  
+
         <span class="input-group-btn">
-  
+
             <button class="btn btn-primary btn-submit">Chat</button>
-  
+
         </span>
-  
+
       </div><!-- /input-group -->
-	
+
 </form>
 
-                    
 
 
-    
+
+
            </div>
            </div>
     </div>
-  
 
-   
 
-    
+
+
+
      </div><!-- /row -->
 
 </div>
 <script type="text/javascript">
-   
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-   
+
     $(".btn-submit").click(function(e){
         e.preventDefault();
         var noidung = $("input[name=noidung]").val();
@@ -276,12 +284,12 @@
             $("input[name=noidung]").val('');
             $("#result").append('<div class="list-group-item"><span><b>Bạn</b> : '+data.message+'</span></div>');
             $("#result").append('<div class="list-group-item"><span><b style="color:red">Cố Vấn Học Tập </b> : '+data.messagecvht+'</span></div>');
-            
+
            },
            complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                 $('#loading').addClass('hidden')
             },
         });
-  
+
     });
 </script>
