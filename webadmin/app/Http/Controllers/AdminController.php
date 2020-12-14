@@ -27,7 +27,7 @@ class AdminController extends Controller
             return redirect('/login');
         }
         // return view('admin.dashboard');
-       
+
     }
     public function dashboard()
     {
@@ -42,7 +42,7 @@ class AdminController extends Controller
         }else{
             return redirect('/login');
         }
-        
+
     }
     public function logout()
     {
@@ -95,7 +95,7 @@ class AdminController extends Controller
 
             DB::table('tbl_phanhoi')->insert($data);
             Session::put('message', 'Thêm Câu Trả Lời Thành Công');
-        
+
         return redirect('/them_tra_loi');
 
     }
@@ -131,9 +131,9 @@ class AdminController extends Controller
         if($check == 0){
             DB::table('tbl_tukhoa')->insert($data);
             Session::put('message', 'Thêm Từ Khóa Thành Công');
-        }else{  
+        }else{
             Session::put('message', 'Thêm Từ Khóa Thất Bại, Từ khóa đã tồn tại');
-            
+
         }
         return redirect('/them_tu_khoa');
 
@@ -153,9 +153,31 @@ class AdminController extends Controller
         if($check == 0){
             DB::table('tbl_chude')->insert($data);
             Session::put('message', 'Thêm Chủ Đề Thành Công');
-        }else{  
+        }else{
             Session::put('message', 'Thêm Chủ Đề Thất Bại, Chủ Đề đã tồn tại');
-            
+
+        }
+        return redirect('/them_chu_de');
+
+    }
+    public function dat_cau_hoi(){
+        $chude = DB::table('tbl_chude')->get();
+        return view('dat_cau_hoi')->with('chude', $chude);
+    }
+    public function dat_cau_hoi_post(Request $request){
+        $machude = $request->machude;
+        $tenchude = $request->tenchude;
+        $data = array();
+        $data['MaChuDe'] = $machude;
+        $data['TenChuDe'] = $tenchude;
+
+        $check = DB::table('tbl_chude')->where('MaChuDe', $machude)->count();
+        if($check == 0){
+            DB::table('tbl_chude')->insert($data);
+            Session::put('message', 'Thêm Chủ Đề Thành Công');
+        }else{
+            Session::put('message', 'Thêm Chủ Đề Thất Bại, Chủ Đề đã tồn tại');
+
         }
         return redirect('/them_chu_de');
 

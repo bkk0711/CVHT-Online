@@ -36,6 +36,7 @@ Route::get('sua_tra_loi/{id}', [AdminController::class, 'sua_tra_loi']);
 Route::get('xoa_tra_loi/{id}', [AdminController::class, 'xoa_tra_loi']);
 
 Route::get('them_chu_de', [AdminController::class, 'them_chu_de']);
+Route::get('dat_cau_hoi', [AdminController::class, 'dat_cau_hoi']);
 
 
 Route::post('chat', [CvhtController::class, 'ajaxRequestPost'])->name('chat.post');
