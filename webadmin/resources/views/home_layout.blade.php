@@ -1,17 +1,11 @@
-<?php
-$admin = Session::get('admin');
-if(!isset($admin)){
-  header("Location: login");
-  die();
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-  <title>@yield('title')</title>
+  <title>@yield('title') | Cố vấn học tập online </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -238,49 +232,38 @@ if(!isset($admin)){
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-          <a href="{{URL::to('dashboard')}}" class="nav-link active">
+               <li class="nav-item">
+                <a href="{{URL::to('/')}}" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                     Chat Online
+
+                    </p>
+                  </a>
+
+                </li>
+          <li class="nav-item">
+          <a href="{{URL::to('dat_cau_hoi')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Thống Kê
+                Đặt Câu Hỏi
 
               </p>
             </a>
 
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ URL::to('/them_chu_de') }}" class="nav-link">
-
-              <p>
-                Quản lý chủ đề
-              </p>
-            </a>
           </li>
           <li class="nav-item">
-            <a href="{{ URL::to('/them_tu_khoa') }}" class="nav-link">
+            <a href="{{URL::to('list_cau_hoi')}}" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Câu hỏi thường gặp
 
-              <p>
-                Quản lý từ khóa
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ URL::to('/them_tra_loi') }}" class="nav-link">
+                </p>
+              </a>
 
-              <p>
-                Quản lý câu trả lời
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ URL::to('/cau_hoi') }}" class="nav-link">
+            </li>
 
-              <p>
-               Trả lời câu hỏi
-              </p>
-            </a>
-          </li>
+
 
         </ul>
       </nav>
@@ -296,12 +279,12 @@ if(!isset($admin)){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">@yield('title')</h1>
+            <h1 class="m-0">Cố vấn học tập online</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">@yield('title')</li>
+              <li class="breadcrumb-item active">Cố vấn học tập online</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -312,7 +295,7 @@ if(!isset($admin)){
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        @yield('admin_content')
+     @yield('home_content')
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
@@ -370,15 +353,6 @@ $.widget.bridge('uibutton', $.ui.button)
 <script>
     $(function () {
     $('#table').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-    $('#table1').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": true,

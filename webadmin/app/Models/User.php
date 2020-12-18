@@ -16,6 +16,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $searchable = [
+        'TuKhoa'
+    ];
+
     protected $fillable = [
         'name',
         'email',

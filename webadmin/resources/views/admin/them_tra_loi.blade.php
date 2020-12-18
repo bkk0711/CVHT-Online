@@ -35,15 +35,21 @@
              <div class="form-group">
                 <label for=""> Từ Khoá : </label>
                 <select name="tukhoa" id="tukhoa" class="form-control">
-                    @foreach ($tukhoa as $tk)
+                    @foreach ($tukhoa0 as $tk)
                     <option value="{{ $tk->IDTuKhoa }}">{{ $tk->TuKhoa }}</option>
                     @endforeach
                 </select>
              </div>
 
              <div class="form-group">
-                <label for=""> Nội dung trả lời : </label>
+                <label for=""> Nội dung trả lời (có thể dùng html): </label>
                 <textarea id="noidung" name="noidung" rows="5" class="form-control"></textarea>
+
+             </div>
+
+             <div class="form-group">
+                <label for=""> Link đính kèm ( nếu có):</label>
+               <input type="text" name="link" class="form-control">
 
              </div>
              <input type="submit" value="Thêm " class="btn btn-primary">
@@ -75,7 +81,13 @@
               @foreach ($traloi as $tl)
               <tr>
                   <th scope="row">{{ $tl->IDPhanHoi }}</th>
+
+                  @if ($tl->IDChuDe == 0)
+                  <td>Khác</td>
+                  @else
                   <td>{{ ($chude->where('IDChuDe',$tl->IDChuDe))->first()->TenChuDe}}</td>
+
+                  @endif
                   <td>{{ ($tukhoa->where('IDTuKhoa',$tl->IDTuKhoa))->first()->TuKhoa}}</td>
                   <td>{{ $tl->PhanHoi }}</td>
 

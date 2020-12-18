@@ -38,11 +38,25 @@ Route::get('xoa_tra_loi/{id}', [AdminController::class, 'xoa_tra_loi']);
 Route::get('them_chu_de', [AdminController::class, 'them_chu_de']);
 Route::get('dat_cau_hoi', [AdminController::class, 'dat_cau_hoi']);
 
+Route::get('cau_hoi', [AdminController::class, 'cau_hoi']);
+
+Route::get('tra_loi_cau_hoi/{id}', [AdminController::class, 'tl_cau_hoi']);
+Route::get('del_cau_hoi/{id}', [AdminController::class, 'del_cau_hoi']);
+Route::get('sua_cau_hoi/{id}', [AdminController::class, 'sua_cau_hoi']);
+Route::get('list_cau_hoi', [AdminController::class, 'list_cau_hoi']);
+
+Route::post('tl_cau_hoi', [AdminController::class, 'p_tl_cau_hoi']);
+Route::post('sua_cau_hoi', [AdminController::class, 'p_sua_cau_hoi']);
 
 Route::post('chat', [CvhtController::class, 'ajaxRequestPost'])->name('chat.post');
+Route::post('dat_cau_hoi', [AdminController::class, 'dat_cau_hoi_post']);
+
 Route::post('checklogin', [AdminController::class, 'checklogin']);
 Route::post('them_tu_khoa', [AdminController::class, 'them_tu_khoa_post']);
 Route::post('sua_tu_khoa', [AdminController::class, 'sua_tu_khoa_post']);
 Route::post('them_chu_de', [AdminController::class, 'them_chu_de_post']);
 Route::post('them_tra_loi', [AdminController::class, 'them_tra_loi_post']);
 Route::post('sua_tra_loi', [AdminController::class, 'sua_tra_loi_post']);
+
+
+

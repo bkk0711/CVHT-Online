@@ -38,25 +38,20 @@
                     @endforeach
                 </select>
              </div>
-             <div class="form-group">
-                <label for=""> Từ Khoá : </label>
-                <select name="tukhoa" id="tukhoa" class="form-control">
-                    @foreach ($tukhoa as $tk)
-                    @if ($tk->IDTuKhoa == $traloi->IDTuKhoa )
-                    <option value="{{ $tk->IDTuKhoa }}" selected>{{ $tk->TuKhoa }}</option>
-                    @else
-                    <option value="{{ $tk->IDTuKhoa }}">{{ $tk->TuKhoa }}</option>
-                    @endif
 
-                    @endforeach
-                </select>
-             </div>
 
              <div class="form-group">
                 <label for=""> Nội dung trả lời : </label>
                 <textarea id="noidung" name="noidung" rows="5" class="form-control">{{ $traloi->PhanHoi }}</textarea>
 
              </div>
+
+             <div class="form-group">
+                <label for=""> Link đính kèm ( nếu có):</label>
+               <input type="text" name="link" class="form-control" value="{{ $traloi->link }}">
+
+             </div>
+
              <input type="submit" value="Sửa " class="btn btn-primary">
             </form>
 
